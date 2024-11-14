@@ -103,7 +103,7 @@ Este proyecto está licenciado bajo la licencia **Creative Commons Attribution-N
 Esto significa que eres libre de:
 
 - Compartir: Copiar y redistribuir el material en cualquier medio o formato.
-- Adaptar: Remezclar, transformar y construir a partir del material.****
+- Adaptar: Remezclar, transformar y construir a partir del material.
 
 **Bajo las siguientes condiciones**:
 
