@@ -95,3 +95,17 @@ La tabla `tickets` registra las transacciones en las que un usuario ha ganado pu
    - Un usuario puede tener multiples tickets que registran sus transacciones y los puntos obtenidos. 
    - `tickets.usuarios_id` es una clave foranea a `usuarios.id`. 
   
+
+## Licencia
+
+Este proyecto está licenciado bajo la licencia **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**. Puedes ver los términos completos de la licencia en el archivo `LICENSE.md` o visitar [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/).
+
+Esto significa que eres libre de:
+
+- Compartir: Copiar y redistribuir el material en cualquier medio o formato.
+- Adaptar: Remezclar, transformar y construir a partir del material.****
+
+**Bajo las siguientes condiciones**:
+
+- **Atribución**: Debes dar el crédito adecuado, proporcionar un enlace a la licencia, e indicar si se realizaron cambios. Puedes hacerlo de cualquier manera razonable, pero no de manera que sugiera que el licenciante te respalda o apoya de forma especial.
+- **No Comercial**: No puedes utilizar el material para fines comerciales.
