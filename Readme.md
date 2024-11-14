@@ -35,23 +35,50 @@ La Tabla de `roles` almacena que tipo de rol tiene cada usuario almacenado en la
 
 | Campo        | Tipo           | Descripcion                                    |
 |--------------|----------------|------------------------------------------------|
-| `ID`         | `SERIAL`       | Clave primaria, identificador unico de usuario.
-|`name`        | `VARCHAR(255)` | Nombre del rol (cliente, manager, admin)                  
-|`descripcion` | `TEXT`         | Descripcion de los permisos o privilegios del rol.                           
+| `id`         | `SERIAL`       | Clave primaria, identificador unico de usuario.
+| `name`       | `VARCHAR(255)` | Nombre del rol (cliente, manager, admin)                  
+| `descripcion`| `TEXT`         | Descripcion de los permisos o privilegios del rol.                           
 
 **Relación:** `usuarios.rol_id` es uan clave foranea que hace referencia a `roles.id`, definiendo el rol de cada usuario. 
 
 ### Tabla `promociones`
 La tabla `promociones` almacena las promociones disponibles en el sistema. Cada promoción tiene un requisito de nivel minimo y fechas de inicio y fin para controlar su validez. 
 
+| Campo          | Tipo           | Descripcion                                    |
+|----------------|----------------|------------------------------------------------|
+| `id`           | `UUID`         | Clave primaria, identificador unico de promocion.
+| `nombre`       | `VARCHAR(255)` | Nombre de la promocion.
+| `descripcion`  | `TEXT`         | Descripcion de la promocion.
+| `nivel_min`    | `INTEGER`      | Nivel minimo necesario para acceder a la promocion.
+| `fecha_inicio` | `DATE`         | Fecha de inicio de la promocion.
+| `fecha_fin`    | `DATE`         | Fecha opcional de fin de la promocion (nulo si no tiene fin).
+
+
 
 ### Tabla `consumed_promo`
 La tabla `consumed_promo` registra el consumo de promociones por parte de los usuarios. Esto asegura que una pormocion especifica no se pueda volver a utilizar una vez consumida (a menos que la promocion permita varios usos).
+
+| Campo          | Tipo           | Descripcion                                    |
+|----------------|----------------|------------------------------------------------|
+| `id`           | `SERIAL`       | Clave primaria de promociones consumidas
+| `usuario_id`   | `UUID`         | Clave foranea a `usuarios(id)`, identifica al usuario
+| `promocion_id` | `UUID`         | Clave foranea a `promocion(id)`, identifica la promocion
+| `fecha_consumo`| `TIMESTAMP`    | Fecha en la que se consumio la promocion.
 
 **Relación:** `consumed_promo.usuario_id` se refiere a `usuarios.id` y `consumed_promo.promocion_id` se refiere a `promocion.id`
 
 ### Tabla `tickets` 
 La tabla `tickets` registra las transacciones en las que un usuario ha ganado puntos a través de compras en la tienda. Esta tabla permite mantener un historial de puntos ganados que se pueden auditar en cualquier momento. 
+
+| Campo          | Tipo           | Descripcion                                    |
+|----------------|----------------|------------------------------------------------|
+| `id`           | `SERIAL`       | Clave primaria de puntos obtenidos.
+| `usuario_id`   | `UUID`         | Clave foranea a `usuarios(id)`, identifica al usuario.
+| `tienda`       | `UUID`         | Clave foranea a `tiendas(id)`, identifica a la tienda.
+| `puntos`       | `INTEGER`      | Numero de puntos acumulados en esa compra.
+| `fecha`        | `TIMESTAP`     | Fecha en la que se registro la compra.
+
+
 
 **Relación:** `tickets.usuario_id` se refiere a `usuario.id`.
 
