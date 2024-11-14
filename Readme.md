@@ -30,17 +30,6 @@ La tabla `usuarios` almacena la informacion de todos los usuarios, incluidos cli
 |`created_at`| `TIMESTAMP`   | Fecha de creacion del usuario.
 |`updated_at`| `TIMESTAMP`   | Fecha de la ultima actualizacion del usuario.
 
-### Tabla `roles`
-La Tabla de `roles` almacena que tipo de rol tiene cada usuario almacenado en la base de datos.
-
-| Campo        | Tipo           | Descripcion                                    |
-|--------------|----------------|------------------------------------------------|
-| `id`         | `SERIAL`       | Clave primaria, identificador unico de usuario.
-| `name`       | `VARCHAR(255)` | Nombre del rol (cliente, manager, admin)                  
-| `descripcion`| `TEXT`         | Descripcion de los permisos o privilegios del rol.                           
-
-**Relación:** `usuarios.rol_id` es uan clave foranea que hace referencia a `roles.id`, definiendo el rol de cada usuario. 
-
 ### Tabla `promociones`
 La tabla `promociones` almacena las promociones disponibles en el sistema. Cada promoción tiene un requisito de nivel minimo y fechas de inicio y fin para controlar su validez. 
 
@@ -78,22 +67,8 @@ La tabla `tickets` registra las transacciones en las que un usuario ha ganado pu
 | `puntos`       | `INTEGER`      | Numero de puntos acumulados en esa compra.
 | `fecha`        | `TIMESTAP`     | Fecha en la que se registro la compra.
 
-
-
 **Relación:** `tickets.usuario_id` se refiere a `usuario.id`.
 
-### Resumen de relaciones entre tablas
-1. `usuarios` ↔ `roles`: relacion de muchos a uno (N:1)
-   - Un usuario tiene un rol (cliente, manager, admin)
-   - `usuarios.rol_id` es una clave foranea de `roles.id`
-
-2. `usuarios` ↔ `promociones` a través de `consumed_promo`: relacion de muchos a muchos (N:N)
-   - Un usuario puede consumir varias promociones, y una promocion puede ser consumida por varios usuarios. 
-   - La tabla `consumed_promo` actua como tabla de union registrando cada consumo unico. 
-
-3. `usuarios` ↔ `tickets`: relación de uno a muchos (1:N).
-   - Un usuario puede tener multiples tickets que registran sus transacciones y los puntos obtenidos. 
-   - `tickets.usuarios_id` es una clave foranea a `usuarios.id`. 
   
 
 ## Licencia
